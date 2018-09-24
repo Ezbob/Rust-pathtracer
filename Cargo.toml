@@ -1,0 +1,6 @@
+[package]
+name = "Rust-pathtracer"
+version = "0.1.0"
+authors = ["Jonas Malte Hinchely <jonas@hinchely.dk>"]
+
+[dependencies]
