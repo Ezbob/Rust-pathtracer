@@ -4,10 +4,6 @@ use std::ops::{Add, Neg, Index};
 
 fn to_u8(val: f64) -> u8 { return val as u8; }
 
-fn new_vec3(e0: f64, e1: f64, e2: f64) -> Vec3 {
-    return Vec3 { values: [e0, e1, e2] };
-}
-
 struct Vec3 {
     values: [f64; 3]
 }
@@ -46,6 +42,10 @@ impl Neg for Vec3 {
 }
 
 impl Vec3 {
+    fn new(e0: f64, e1: f64, e2: f64) -> Vec3 {
+        return Vec3 { values: [e0, e1, e2] };
+    }
+
     fn x(&self) -> f64 { return self.values[0]; }
     fn y(&self) -> f64 { return self.values[1]; }
     fn z(&self) -> f64 { return self.values[2]; }
