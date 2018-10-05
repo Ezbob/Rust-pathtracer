@@ -66,6 +66,46 @@ impl Vec3 {
     }
 }
 
+
+#[cfg(test)]
+mod vec_tests {
+
+use ::Vec3;
+
+    #[test]
+    fn can_create_vec3_with_new() {
+        let v: Vec3 = Vec3::new(1., 1., 1.);
+        assert_eq!(v.values[0], 1.);
+        assert!(v.values[1] == v.values[2]);
+        assert!(v.values[0] == v.values[1]);
+    }
+
+    #[test]
+    fn squared_length_gives_expected_results() {
+        let x: f64 = 1.;
+        let y: f64 = 2.;
+        let z: f64 = 3.;
+        let res: f64 = 14.;
+
+        let v1: Vec3 = Vec3::new(x,y,z);
+
+        assert_eq!(v1.squared_length(), res);
+    }
+
+    #[test]
+    fn length_gives_expected_results() {
+        let x: f64 = 1.;
+        let y: f64 = 2.;
+        let z: f64 = 3.;
+        let res: f64 = 3.74165738677394138;
+        let epsilon: f64 = 0.00000001;
+
+        let v1: Vec3 = Vec3::new(x,y,z);
+
+        assert!((v1.length() - res).abs() < epsilon);
+    }
+}
+
 // Render gradient in .ppm file:
 fn main() -> std::io::Result<()> {
     let mut file = File::create("out.ppm")?;
