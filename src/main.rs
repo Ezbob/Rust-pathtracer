@@ -70,7 +70,7 @@ impl Vec3 {
 #[cfg(test)]
 mod vec_tests {
 
-use ::Vec3;
+    use ::Vec3;
 
     #[test]
     fn can_create_vec3_with_new() {
