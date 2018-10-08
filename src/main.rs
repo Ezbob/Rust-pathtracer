@@ -1,11 +1,13 @@
 use std::fs::File;
 use std::io::prelude::*;
-use std::ops::{Add, Neg, Index};
+use std::ops::{Add, Index, Neg};
 
-fn to_u8(val: f64) -> u8 { return val as u8; }
+fn to_u8(val: f64) -> u8 {
+    return val as u8;
+}
 
 struct Vec3 {
-    values: [f64; 3]
+    values: [f64; 3],
 }
 
 impl Index<usize> for Vec3 {
@@ -24,53 +26,61 @@ impl Add for Vec3 {
             values: [
                 self.values[0] + other.values[0],
                 self.values[1] + other.values[1],
-                self.values[2] + other.values[2]
-            ]
+                self.values[2] + other.values[2],
+            ],
         };
     }
 }
-
 
 impl Neg for Vec3 {
     type Output = Vec3;
 
     fn neg(self) -> Vec3 {
         return Vec3 {
-            values: [self.values[0], self.values[1], self.values[2]]
+            values: [self.values[0], self.values[1], self.values[2]],
         };
     }
 }
 
 impl Vec3 {
     fn new(e0: f64, e1: f64, e2: f64) -> Vec3 {
-        return Vec3 { values: [e0, e1, e2] };
+        return Vec3 {
+            values: [e0, e1, e2],
+        };
     }
 
-    fn x(&self) -> f64 { return self.values[0]; }
-    fn y(&self) -> f64 { return self.values[1]; }
-    fn z(&self) -> f64 { return self.values[2]; }
-    fn r(&self) -> f64 { return self.values[0]; }
-    fn g(&self) -> f64 { return self.values[1]; }
-    fn b(&self) -> f64 { return self.values[2]; }
-    
+    fn x(&self) -> f64 {
+        return self.values[0];
+    }
+    fn y(&self) -> f64 {
+        return self.values[1];
+    }
+    fn z(&self) -> f64 {
+        return self.values[2];
+    }
+    fn r(&self) -> f64 {
+        return self.values[0];
+    }
+    fn g(&self) -> f64 {
+        return self.values[1];
+    }
+    fn b(&self) -> f64 {
+        return self.values[2];
+    }
+
     fn length(&self) -> f64 {
-        return (self.values[0].powi(2) +
-                self.values[1].powi(2) +
-                self.values[2].powi(2)).sqrt()
+        return (self.values[0].powi(2) + self.values[1].powi(2) + self.values[2].powi(2)).sqrt();
     }
 
     fn squared_length(&self) -> f64 {
-        return self.values[0].powi(2) +
-               self.values[1].powi(2) +
-               self.values[2].powi(2)
+        return self.values[0].powi(2) + self.values[1].powi(2) + self.values[2].powi(2);
     }
 }
-
 
 #[cfg(test)]
 mod vec_tests {
 
-use ::Vec3;
+    use Vec3;
 
     #[test]
     fn can_create_vec3_with_new() {
@@ -87,7 +97,7 @@ use ::Vec3;
         let z: f64 = 3.;
         let res: f64 = 14.;
 
-        let v1: Vec3 = Vec3::new(x,y,z);
+        let v1: Vec3 = Vec3::new(x, y, z);
 
         assert_eq!(v1.squared_length(), res);
     }
@@ -100,7 +110,7 @@ use ::Vec3;
         let res: f64 = 3.74165738677394138;
         let epsilon: f64 = 0.00000001;
 
-        let v1: Vec3 = Vec3::new(x,y,z);
+        let v1: Vec3 = Vec3::new(x, y, z);
 
         assert!((v1.length() - res).abs() < epsilon);
     }
